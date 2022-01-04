@@ -1,0 +1,22 @@
+module.exports = (api) => {
+  const isNode = api.caller((caller) => caller && caller.target === "node");
+  const isOffline = process.env.IS_OFFLINE;
+  return {
+    presets: [
+      [
+        "@babel/preset-env",
+        {
+          useBuiltIns: "entry",
+          corejs: "3.9",
+          targets: isNode ? { node: "14" } : { browsers: "last 2 versions" },
+        },
+      ],
+      "@babel/preset-typescript",
+      "@babel/preset-react",
+    ],
+    plugins: [
+      !isNode && isOffline && "react-refresh/babel",
+      // Add your own Babel plugins here
+    ].filter(Boolean),
+  };
+};

@@ -1,0 +1,14 @@
+# packages
+node_modules
+jspm_packages
+
+# Serverless
+.serverless
+.env
+
+# Webpack
+.webpack
+dist
+
+# Other
+.DS_Store
